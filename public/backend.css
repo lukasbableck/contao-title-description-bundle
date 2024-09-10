@@ -1,0 +1,35 @@
+meter.text-length{
+	appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	background: transparent;
+	height: 6px;
+	left: 1px;
+	position: relative;
+	top: -9px;
+	width: calc(100% - 2px);
+}
+
+meter.text-length::-webkit-meter-bar{
+	background: transparent
+}
+meter.text-length::-webkit-meter-optimum-value{
+	background: var(--green);
+}
+meter.text-length::-moz-meter-bar{
+	background: var(--green);
+}
+
+meter.text-length.yellow::-webkit-meter-optimum-value{
+	background: var(--contao);
+}
+meter.text-length.yellow::-moz-meter-bar{
+	background: var(--contao);
+}
+
+meter.text-length.red::-webkit-meter-optimum-value{
+	background: var(--red);
+}
+meter.text-length.red::-moz-meter-bar{
+	background: var(--red);
+}
