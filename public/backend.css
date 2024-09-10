@@ -1,4 +1,4 @@
-meter.text-length{
+meter.text-length {
 	appearance: none;
 	-webkit-appearance: none;
 	border: none;
@@ -10,35 +10,40 @@ meter.text-length{
 	width: calc(100% - 2px);
 	margin-block-end: -2px;
 }
-meter.text-length + .tl_help{
+
+meter.text-length+.tl_help {
 	margin-block-start: -3px;
 }
 
-meter.text-length::-webkit-meter-bar{
+meter.text-length::-webkit-meter-bar {
 	border-radius: 0 0 2px 2px;
 	background: transparent
 }
-meter.text-length::-webkit-meter-optimum-value{
-	border-radius: 0 0 0 2px;
-	background: var(--green);
-}
-meter.text-length::-moz-meter-bar{
+
+meter.text-length::-webkit-meter-optimum-value {
 	border-radius: 0 0 0 2px;
 	background: var(--green);
 }
 
-meter.text-length.yellow::-webkit-meter-optimum-value{
-	background: var(--contao);
+meter.text-length::-moz-meter-bar {
+	border-radius: 0 0 0 2px;
+	background: var(--green);
 }
-meter.text-length.yellow::-moz-meter-bar{
+
+meter.text-length.yellow::-webkit-meter-optimum-value {
 	background: var(--contao);
 }
 
-meter.text-length.red::-webkit-meter-optimum-value{
+meter.text-length.yellow::-moz-meter-bar {
+	background: var(--contao);
+}
+
+meter.text-length.red::-webkit-meter-optimum-value {
 	border-radius: 0 0 2px 2px;
 	background: var(--red);
 }
-meter.text-length.red::-moz-meter-bar{
+
+meter.text-length.red::-moz-meter-bar {
 	border-radius: 0 0 2px 2px;
 	background: var(--red);
 }

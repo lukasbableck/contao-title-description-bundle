@@ -78,7 +78,7 @@ const extractJSON = (str) => {
 const getTitleTag = (serpPreview) => {
 	let script = serpPreview.nextElementSibling.innerHTML;
 	let json = extractJSON(script);
-	if(json[0]){
+	if (json[0]) {
 		return json[0].titleTag;
 	}
 }
