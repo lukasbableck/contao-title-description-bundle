@@ -16,8 +16,6 @@ class LoadDataContainerListener {
 			return;
 		}
 
-		$GLOBALS['TL_DCA'][$table]['fields']['pageTitle']['attributes_callback'][] = [PageTitleAttributesListener::class, '__invoke'];
-
 		$request = $this->requestStack->getCurrentRequest();
 		if (null == $request || !$this->scopeMatcher->isBackendRequest($request) || 'edit' !== $request->query->get('act')) {
 			return;

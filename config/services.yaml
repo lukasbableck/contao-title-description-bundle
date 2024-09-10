@@ -5,6 +5,3 @@ services:
         public: false
     Lukasbableck\ContaoTitleDescriptionBundle\:
         resource: ../src
-    Lukasbableck\ContaoTitleDescriptionBundle\EventListener\:
-        resource: ../src/EventListener
-        public: true
