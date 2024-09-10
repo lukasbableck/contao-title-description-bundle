@@ -11,15 +11,19 @@ class LoadDataContainerListener {
 	}
 
 	public function __invoke(string $table): void {
+		if (!\array_key_exists('pageTitle', $GLOBALS['TL_DCA'][$table]['fields'])
+			&& !\array_key_exists('description', $GLOBALS['TL_DCA'][$table]['fields'])) {
+			return;
+		}
+
+		$GLOBALS['TL_DCA'][$table]['fields']['pageTitle']['attributes_callback'][] = [PageTitleAttributesListener::class, '__invoke'];
+
 		$request = $this->requestStack->getCurrentRequest();
 		if (null == $request || !$this->scopeMatcher->isBackendRequest($request) || 'edit' !== $request->query->get('act')) {
 			return;
 		}
-		if (\array_key_exists('pageTitle', $GLOBALS['TL_DCA'][$table]['fields'])
-			&& \array_key_exists('description', $GLOBALS['TL_DCA'][$table]['fields'])) {
-			$GLOBALS['TL_CSS'][] = 'bundles/contaotitledescription/backend.css';
-			$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaotitledescription/backend.js';
-			$GLOBALS['TL_DCA'][$table]['fields']['pageTitle']['attributes_callback'] = [PageTitleAttributesListener::class, '__invoke'];
-		}
+
+		$GLOBALS['TL_CSS'][] = 'bundles/contaotitledescription/backend.css';
+		$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaotitledescription/backend.js';
 	}
 }
