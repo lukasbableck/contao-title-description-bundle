@@ -1,7 +1,7 @@
 {
     "name": "lukasbableck/contao-title-description-bundle",
     "type": "contao-bundle",
-	"description": "This bundle shows the length of the pageTitle and description in the Contao backend.",
+	"description": "This bundle adds a meter for the pageTitle and description length in the Contao backend. The maximum values are based on the maximum length Google usually displays in the search results.",
 	"keywords": [
 		"contao",
 		"meta",
