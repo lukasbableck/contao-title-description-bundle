@@ -15,6 +15,10 @@ meter.text-length+.tl_help {
 	margin-block-start: -3px;
 }
 
+meter.text-length::-webkit-meter-inner-element {
+	display: block;
+}
+
 meter.text-length::-webkit-meter-bar {
 	border-radius: 0 0 2px 2px;
 	background: transparent
