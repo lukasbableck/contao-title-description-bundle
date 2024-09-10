@@ -1,8 +1,14 @@
 {
     "name": "lukasbableck/contao-title-description-bundle",
     "type": "contao-bundle",
-	"description": "",
+	"description": "This bundle shows the length of the pageTitle and description in the Contao backend.",
 	"keywords": [
+		"contao",
+		"meta",
+		"title",
+		"description",
+		"google",
+		"seo"
 	],
     "license": "LGPL-3.0-or-later",
 	"authors": [
