@@ -19,6 +19,7 @@ class LoadDataContainerListener {
 			&& \array_key_exists('description', $GLOBALS['TL_DCA'][$table]['fields'])) {
 			$GLOBALS['TL_CSS'][] = 'bundles/contaotitledescription/backend.css';
 			$GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaotitledescription/backend.js';
+			$GLOBALS['TL_DCA'][$table]['fields']['pageTitle']['attributes_callback'] = [PageTitleAttributesListener::class, '__invoke'];
 		}
 	}
 }
