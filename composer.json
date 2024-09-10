@@ -8,6 +8,7 @@
 		"title",
 		"description",
 		"google",
+		"serp",
 		"seo"
 	],
     "license": "LGPL-3.0-or-later",

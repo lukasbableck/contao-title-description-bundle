@@ -11,7 +11,7 @@ class LoadDataContainerListener {
 	}
 
 	public function __invoke(string $table): void {
-		if (!is_array($GLOBALS['TL_DCA'][$table]) || !\array_key_exists('fields', $GLOBALS['TL_DCA'][$table])
+		if (!\is_array($GLOBALS['TL_DCA'][$table]) || !\array_key_exists('fields', $GLOBALS['TL_DCA'][$table])
 			|| (!\array_key_exists('pageTitle', $GLOBALS['TL_DCA'][$table]['fields'])
 			&& !\array_key_exists('description', $GLOBALS['TL_DCA'][$table]['fields']))) {
 			return;
