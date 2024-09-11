@@ -35,11 +35,11 @@ meter.text-length::-moz-meter-bar {
 }
 
 meter.text-length.yellow::-webkit-meter-optimum-value {
-	background: var(--contao);
+	background: var(--orange);
 }
 
 meter.text-length.yellow::-moz-meter-bar {
-	background: var(--contao);
+	background: var(--orange);
 }
 
 meter.text-length.red::-webkit-meter-optimum-value {
