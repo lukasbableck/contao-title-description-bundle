@@ -111,47 +111,8 @@ const bindDescriptionField = (field) => {
 	});
 }
 
-const addSpecialCharsPicker = (description) => {
-	let widget = document.createElement("div");
-	widget.classList.add("widget");
-	widget.classList.add("clr");
-	let h3 = document.createElement("h3");
-	h3.textContent = document.documentElement.lang === "de" ? "Sonderzeichen" : "Special characters";
-	widget.appendChild(h3);
-
-	let picker = document.createElement("div");
-	picker.classList.add("special-chars");
-	picker.innerHTML = `
-		<div class="special-char">ᐅ</div>
-		<div class="special-char">►</div>
-		<div class="special-char">➡️</div>
-		<div class="special-char">✓</div>
-		<div class="special-char">✘</div>
-		<div class="special-char">✅</div>
-		<div class="special-char">❌</div>
-		<div class="special-char">✚</div>
-		<div class="special-char">☆</div>
-		<div class="special-char">★</div>
-		<div class="special-char">⭐️</div>
-		<div class="special-char">♥</div>
-		<div class="special-char">☎</div>
-		<div class="special-char">🚀</div>
-		<div class="special-char">🥇</div>
-	`;
-	widget.appendChild(picker);
-	bindSpecialCharClick(widget);
-
-	let tip = document.createElement("p");
-	tip.classList.add("tl_help");
-	tip.classList.add("tl_tip");
-	tip.textContent = document.documentElement.lang === "de" ? "Klicken Sie auf ein Sonderzeichen, um es in den Seitentitel oder die Beschreibung einzufügen." : "Click on a special character to insert it into the page title or description field.";
-	widget.appendChild(tip);
-
-	description.closest(".widget").after(widget);
-}
-
 const bindSpecialCharClick = (widget) => {
-	widget.querySelectorAll(".special-char").forEach(char => {
+	widget.querySelectorAll(".char-picker-button").forEach(char => {
 		char.addEventListener('mousedown', event => {
 			event.preventDefault();
 			event.stopPropagation();
@@ -191,7 +152,7 @@ const init = () => {
 		}
 		bindTitleField(pageTitle);
 		bindDescriptionField(description);
-		addSpecialCharsPicker(description);
+		bindSpecialCharClick(description.closest(".widget").nextElementSibling.querySelector(".char-picker"));
 	}
 };
 
