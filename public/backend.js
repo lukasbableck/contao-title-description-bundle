@@ -166,7 +166,9 @@ const bindSpecialCharClick = (widget) => {
 				input.value = newText;
 				input.selectionStart = selectionStart + char.textContent.length;
 				input.selectionEnd = selectionStart + char.textContent.length;
-				let event = new Event('keyup');
+				let event = new Event('input');
+				input.dispatchEvent(event);
+				event = new Event('keyup');
 				input.dispatchEvent(event);
 			}else{
 				navigator.clipboard.writeText(char.textContent).then(() => {
