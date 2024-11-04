@@ -1,6 +1,8 @@
 <?php
 namespace Lukasbableck\ContaoTitleDescriptionBundle\EventListener;
 
+use Contao\Config;
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\CoreBundle\Routing\ScopeMatcher;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -20,6 +22,25 @@ class LoadDataContainerListener {
 		$request = $this->requestStack->getCurrentRequest();
 		if (null == $request || !$this->scopeMatcher->isBackendRequest($request) || 'edit' !== $request->query->get('act')) {
 			return;
+		}
+
+		$GLOBALS['TL_DCA'][$table]['fields']['specialCharsPicker'] = [
+			'label' => &$GLOBALS['TL_LANG']['MSC']['specialCharsPicker'],
+			'inputType' => 'charPicker',
+			'options' => Config::get('titleDescriptionSpecialChars') ?? [
+				'ᐅ', '►', '➡️', '✓', '✘', '✅', '❌', '✚', '☆', '★', '⭐️', '♥', '☎', '🚀', '🥇'
+			],
+			'eval' => ['tl_class' => 'w50 special-chars'],
+		];
+
+		foreach ($GLOBALS['TL_DCA'][$table]['palettes'] as $name => $palette) {
+			if ('__selector__' === $name) {
+				continue;
+			}
+			PaletteManipulator::create()
+				->addField('specialCharsPicker', 'description', PaletteManipulator::POSITION_AFTER)
+				->applyToPalette($name, $table)
+			;
 		}
 
 		$GLOBALS['TL_CSS'][] = 'bundles/contaotitledescription/backend.css';

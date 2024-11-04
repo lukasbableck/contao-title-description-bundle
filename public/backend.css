@@ -53,35 +53,11 @@ meter.text-length.red::-moz-meter-bar {
 	background: var(--red);
 }
 
-.widget .special-chars{
-	display: flex;
-	flex-flow: row wrap;
-	margin-block: 4px;
-}
-.widget .special-chars .special-char{
-	border: 1px solid var(--form-border);
-	background-color: var(--form-bg);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 20px;
-	height: 35px;
-	width: 40px;
-	cursor: pointer;
-	position: relative;
-	transition: background-color 0.2s;
-}
-.widget .special-chars .special-char:hover{
-	background-color: var(--panel-bg);
-}
-.widget .special-chars .special-char:not(:last-of-type){
-	border-right: none;
-}
 
-html[lang=de] .widget .special-chars .special-char::before{
+html[lang=de] .widget .char-picker.special-chars .char-picker-button::before{
 	content: 'In Zwischenablage kopiert';
 }
-.widget .special-chars .special-char::before{
+.widget .char-picker.special-chars .char-picker-button::before{
 	content: 'Copied to clipboard';
 	position: absolute;
 	bottom: calc(100% - .75rem);
@@ -97,10 +73,10 @@ html[lang=de] .widget .special-chars .special-char::before{
 	pointer-events: none;
 	font-size: 14px;
 }
-.widget .special-chars .special-char.copied{
+.widget .char-picker.special-chars .char-picker-button.copied{
 	background-color: var(--panel-bg);
 }
-.widget .special-chars .special-char.copied::before{
+.widget .char-picker.special-chars .char-picker-button.copied::before{
 	opacity: 1;
 	bottom: 100%;
 }
