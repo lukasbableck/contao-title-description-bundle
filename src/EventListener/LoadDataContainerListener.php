@@ -36,7 +36,9 @@ class LoadDataContainerListener {
 				'options' => $arrChars,
 				'eval' => ['tl_class' => 'w50 special-chars'],
 			];
-
+			if(\array_key_exists('serpPreview', $GLOBALS['TL_DCA'][$table]['fields'])) {
+				$GLOBALS['TL_DCA'][$table]['fields']['serpPreview']['eval']['tl_class'] .= ' clr';
+			}
 			foreach ($GLOBALS['TL_DCA'][$table]['palettes'] as $name => $palette) {
 				if ('__selector__' === $name) {
 					continue;
