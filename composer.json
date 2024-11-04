@@ -1,7 +1,7 @@
 {
     "name": "lukasbableck/contao-title-description-bundle",
     "type": "contao-bundle",
-	"description": "This bundle adds a meter for the pageTitle and description length in the Contao backend. The maximum values are based on the maximum length Google usually displays in the search results.",
+	"description": "This bundle adds a meter for the length of the page title and description in the Contao backend as well as a picker that allows you to easily insert special characters into your title or description. The maximum values for the title and description length are based on the maximum length that Google usually displays in search results.",
 	"keywords": [
 		"contao",
 		"meta",
