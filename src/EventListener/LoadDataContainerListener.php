@@ -23,13 +23,16 @@ class LoadDataContainerListener {
 		if (null == $request || !$this->scopeMatcher->isBackendRequest($request) || 'edit' !== $request->query->get('act')) {
 			return;
 		}
-
+		$chars = Config::get('titleDescriptionSpecialChars');
+		$length = grapheme_strlen($chars);
+		$arrChars = [];
+		for ($i = 0; $i < $length; $i++) {
+			$arrChars[] = grapheme_substr($chars, $i, 1);
+		}
 		$GLOBALS['TL_DCA'][$table]['fields']['specialCharsPicker'] = [
 			'label' => &$GLOBALS['TL_LANG']['MSC']['specialCharsPicker'],
 			'inputType' => 'charPicker',
-			'options' => Config::get('titleDescriptionSpecialChars') ?? [
-				'ᐅ', '►', '➡️', '✓', '✘', '✅', '❌', '✚', '☆', '★', '⭐️', '♥', '☎', '🚀', '🥇'
-			],
+			'options' => $arrChars,
 			'eval' => ['tl_class' => 'w50 special-chars'],
 		];
 
