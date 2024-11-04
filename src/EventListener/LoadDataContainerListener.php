@@ -24,26 +24,28 @@ class LoadDataContainerListener {
 			return;
 		}
 		$chars = Config::get('titleDescriptionSpecialChars');
-		$length = grapheme_strlen($chars);
-		$arrChars = [];
-		for ($i = 0; $i < $length; $i++) {
-			$arrChars[] = grapheme_substr($chars, $i, 1);
-		}
-		$GLOBALS['TL_DCA'][$table]['fields']['specialCharsPicker'] = [
-			'label' => &$GLOBALS['TL_LANG']['MSC']['specialCharsPicker'],
-			'inputType' => 'charPicker',
-			'options' => $arrChars,
-			'eval' => ['tl_class' => 'w50 special-chars'],
-		];
-
-		foreach ($GLOBALS['TL_DCA'][$table]['palettes'] as $name => $palette) {
-			if ('__selector__' === $name) {
-				continue;
+		if(!empty($chars)) {
+			$length = grapheme_strlen($chars);
+			$arrChars = [];
+			for ($i = 0; $i < $length; $i++) {
+				$arrChars[] = grapheme_substr($chars, $i, 1);
 			}
-			PaletteManipulator::create()
-				->addField('specialCharsPicker', 'description', PaletteManipulator::POSITION_AFTER)
-				->applyToPalette($name, $table)
-			;
+			$GLOBALS['TL_DCA'][$table]['fields']['specialCharsPicker'] = [
+				'label' => &$GLOBALS['TL_LANG']['MSC']['specialCharsPicker'],
+				'inputType' => 'charPicker',
+				'options' => $arrChars,
+				'eval' => ['tl_class' => 'w50 special-chars'],
+			];
+
+			foreach ($GLOBALS['TL_DCA'][$table]['palettes'] as $name => $palette) {
+				if ('__selector__' === $name) {
+					continue;
+				}
+				PaletteManipulator::create()
+					->addField('specialCharsPicker', 'description', PaletteManipulator::POSITION_AFTER)
+					->applyToPalette($name, $table)
+				;
+			}
 		}
 
 		$GLOBALS['TL_CSS'][] = 'bundles/contaotitledescription/backend.css';
