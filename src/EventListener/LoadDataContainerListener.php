@@ -24,10 +24,10 @@ class LoadDataContainerListener {
 			return;
 		}
 		$chars = Config::get('titleDescriptionSpecialChars');
-		if(!empty($chars)) {
+		if (!empty($chars)) {
 			$length = grapheme_strlen($chars);
 			$arrChars = [];
-			for ($i = 0; $i < $length; $i++) {
+			for ($i = 0; $i < $length; ++$i) {
 				$arrChars[] = grapheme_substr($chars, $i, 1);
 			}
 			$GLOBALS['TL_DCA'][$table]['fields']['specialCharsPicker'] = [
@@ -36,11 +36,11 @@ class LoadDataContainerListener {
 				'options' => $arrChars,
 				'eval' => ['tl_class' => 'w50 special-chars'],
 			];
-			if(\array_key_exists('serpPreview', $GLOBALS['TL_DCA'][$table]['fields'])) {
-				if(!\array_key_exists('eval', $GLOBALS['TL_DCA'][$table]['fields']['serpPreview'])) {
+			if (\array_key_exists('serpPreview', $GLOBALS['TL_DCA'][$table]['fields'])) {
+				if (!\array_key_exists('eval', $GLOBALS['TL_DCA'][$table]['fields']['serpPreview'])) {
 					$GLOBALS['TL_DCA'][$table]['fields']['serpPreview']['eval'] = [];
 				}
-				if(!\array_key_exists('tl_class', $GLOBALS['TL_DCA'][$table]['fields']['serpPreview']['eval'])) {
+				if (!\array_key_exists('tl_class', $GLOBALS['TL_DCA'][$table]['fields']['serpPreview']['eval'])) {
 					$GLOBALS['TL_DCA'][$table]['fields']['serpPreview']['eval']['tl_class'] = '';
 				}
 				$GLOBALS['TL_DCA'][$table]['fields']['serpPreview']['eval']['tl_class'] .= ' clr';
@@ -49,10 +49,12 @@ class LoadDataContainerListener {
 				if ('__selector__' === $name) {
 					continue;
 				}
-				PaletteManipulator::create()
-					->addField('specialCharsPicker', 'description', PaletteManipulator::POSITION_AFTER)
-					->applyToPalette($name, $table)
-				;
+				if (str_contains($palette, 'description')) {
+					PaletteManipulator::create()
+						->addField('specialCharsPicker', 'description', PaletteManipulator::POSITION_AFTER)
+						->applyToPalette($name, $table)
+					;
+				}
 			}
 		}
 
