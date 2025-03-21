@@ -45,6 +45,9 @@ class LoadDataContainerListener {
 				}
 				$GLOBALS['TL_DCA'][$table]['fields']['serpPreview']['eval']['tl_class'] .= ' clr';
 			}
+			if (!\is_array($GLOBALS['TL_DCA'][$table]['palettes'] ?? null)) {
+				return;
+			}
 			foreach ($GLOBALS['TL_DCA'][$table]['palettes'] as $name => $palette) {
 				if ('__selector__' === $name) {
 					continue;
