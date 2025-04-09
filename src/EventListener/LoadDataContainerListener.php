@@ -53,6 +53,10 @@ class LoadDataContainerListener {
 					continue;
 				}
 				if (str_contains($palette, 'description')) {
+					if ($GLOBALS['TL_DCA'][$table]['fields']['description']['eval']['noSpecialCharsPicker'] ?? false) {
+						continue;
+					}
+
 					PaletteManipulator::create()
 						->addField('specialCharsPicker', 'description', PaletteManipulator::POSITION_AFTER)
 						->applyToPalette($name, $table)
